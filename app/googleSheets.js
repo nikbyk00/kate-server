@@ -1,0 +1,15 @@
+const { GoogleSpreadsheet } = require('google-spreadsheet');
+
+const email = "kate-938@strange-calling-381911.iam.gserviceaccount.com";
+const UserPrivateKey = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC5RKsJ0qcNc8mv\nEe1wrRHgm5ZyaF9FDzT6+Ep4YLip32+mG3D2IfhxrW5Q0ta1BOyeyXmskmWrfMgF\nyB627hurK+nxumwQtVZTu2LyjpJCBrWeRti+S8TjcojbSmZ8+fcrMKdNY6iSkMle\nBjGZ4wrpZOfQnYJr+qdnSrr8ivfXw1shAtuth+k8N1ebKcoJuGVqOZ5GYuaqHPZW\n4M4ZYjrgSoLo84r2f1T27U+cKULLnouR2FSVQac7m+jgNqyJ1Hj3fcVHmr9EOurW\niCFMhNsbdXukWpgDEhtqcZj62pAzvBF04hmnuABXBC4XdjVpSnx6u4u+liVVVcap\nE2K4Nb4lAgMBAAECggEADqjkFs4kGVCm7hMvVFnhfwIYtLtVBIgoQ06Xx/AxVIHB\nWiW0Ocmk2MvmHX+dbSvzVDoxhkn8QQZJ5ok4AvYS2ufJ5m5/pA/RQaVjdjl5Ub+p\nqdlFx8MDlJLIyP9ZXjzCRdje+CTxXw2VXXsEfD6Gq8KoBC4edpBaJDZ51sdhRqGE\nWgqVhWzdzVHEKnhflAsW1UnI/axTjjOLRkTMICCHYpyefnt4SE9NbyNyTMAsuhiS\nCfqw7RpGaUOuB7UaFfS5IqKWqlF7jT8mG6n0h+AEJmRRZ/QdtiHBpRfer2SyDExU\nfErc8c0+UYFlkVcOgD3SB3WYuN0lopDE+WWWeH2+IQKBgQDqpcZesl71jpAgtxFN\ng2W00jNl+5q+3auwpnAHbKrXoKMjfsA//6pgZzvNqxgwNRgXqLaScFho7K9nApB1\nOl5ENzLeOiSZ/qox4kUXnyVdU+pXJP+TXWSWqEcJ00Qa3O/kXEKO57zNphS+9R8s\n5BLUvSzDmrG2jBt92csChmT24QKBgQDKIJQlmkwHDsPibSVuJqSxY8belW6uOJLq\nl+oWBaEcU86psYLrZwMTawIJ/BnsLiBCJbFRzBd2ME/6SZs3tv3lgD3OQ1l+uVsX\n60MEDtG8SAuBGEQK3g4wNtRwUAMXW9bDdYmfxZALBozSYp7rCLzFD/sCBhs6qEfS\nMxXhfiMjxQKBgGVCqPqQyz35CeW0WvkybR+9XoTyMXOQwdj32ny5vnhTUFOvDVQR\nBvuXUU2OOmADaaQ8IJ3NcbnF+mPfzWtphui1UXRpbwYtylDArsRk34EJB6YXx1tX\nAGOrtwxcaZWWJshLsEVvaCDvPSCzM4Lx4daA1OKMzYhTqkGDTYKHcObBAoGAEu/S\ncWNvVAnyGDiZlSRRsbzjWN8vK2tpeEkbSUzltz2y0vsqhNt10k/oNP9Ffncj1o6p\nejxgxlXoaE6VGDcwulu1bqmorNK40hjcgnjQ9Y7aZRHc7he3xJSeepdEct/L0ywj\n5LAhuqa2cs+CjAqZhOzmW14vFuPFNtBKcIHc0PECgYEAp38WEFrtH91NiGxG9UE5\nredW5/ipxTa2TMSgFKRTdA97J9ZRi84jX85CaIYu+EHoAFXdWjaIia1J5e2jxrwz\nmpftaQIr0Qa2miTP+wPs18DsOjVD8XyvcVLAP95ORRi/H709Ulup+cZ1y1q+qjYq\nhi0VSZlG8uFNrQSziFHWjsU=\n-----END PRIVATE KEY-----\n";
+const doc = new GoogleSpreadsheet("1zqIrNHbPzVlerjhJsVCl8eDK8R3xO3m0z5Ty-tNNYGY");
+
+async function start() {
+try {
+    await doc.useServiceAccountAuth({client_email: email, private_key: UserPrivateKey});
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+module.exports = { doc, start }
