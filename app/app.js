@@ -1,13 +1,12 @@
 const express = require('express');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+
+
 const cors = require('cors');
 const http = require('http');
-const debug = require('debug')('template.backend:server');
-const { start } = require('./googleSheets')
 
+const { start } = require('./googleSheets');
+const { PORT } = require('./env.config');
 
-const { openConnection, openSync } = require('./database');
 
 /* --------------- V1 routes --------------- */
 
@@ -18,18 +17,17 @@ const app = express();
 
 app.use(cors());
 
-app.use(logger('combined'));
+
 app.use(express.json({ limit: process.env.SERVER_CLIENT_MAX_BODY_SIZE }));
 app.use(express.urlencoded({ extended: false, limit: process.env.SERVER_CLIENT_MAX_BODY_SIZE }));
-app.use(cookieParser())
+
 
 app.use('/auth', auth);
 
 
-app.use(logger('combined'));
-
-const port = normalizePort(process.env.SERVER_PORT || '4000');
+const port = normalizePort(process.env.SERVER_PORT || PORT);
 app.set('port', port);
+console.info(port)
 
 /**
  * Create HTTP server.
@@ -48,8 +46,6 @@ server.on('listening', onListening);
 
 async function bootstrap() {
     try {
-      await openConnection();
-      await openSync();  
       await start();
       
       console.info('Connected');
@@ -117,7 +113,7 @@ function onListening() {
     const bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
-    debug('Listening on ' + bind);
+
 }
 
 module.exports = app;
