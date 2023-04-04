@@ -17,9 +17,6 @@ router.post('/login', async (req, res) => {
                                 'messenger': reqData.messenger,
                                 'age': reqData.age,
                                 'experience': reqData.experience,
-                                'target': reqData.target,
-                                'time': reqData.time,
-                                'money': reqData.money,
                                 'city': reqData.city
                             })
 
