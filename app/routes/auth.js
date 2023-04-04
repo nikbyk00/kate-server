@@ -5,7 +5,7 @@ const { doc } = require('../googleSheets')
 const router = express.Router()
 
 router.post('/login', async (req, res) => {
-        
+
     const reqData = req.body;
 
     try {
@@ -13,14 +13,14 @@ router.post('/login', async (req, res) => {
             await doc.loadInfo();
             const sheet = doc.sheetsByIndex[0];
             await sheet.addRow({ 'name': reqData.name, 
-                                'number': reqData.number, 
+                                'number': '${reqData.number}, 
                                 'messenger': reqData.messenger,
                                 'age': reqData.age,
                                 'experience': reqData.experience,
-                                'city': reqData.city
+                                'city': reqData.city,
                             })
 
-           
+
 
             common.response200(res)
         } catch (err) {
